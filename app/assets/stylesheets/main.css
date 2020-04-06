@@ -1,0 +1,64 @@
+body {
+    font-family: Helvetica, sans-serif;
+    color: #484848;
+    line-height: 1.3em;
+  }
+h1 {
+    color: #ff6600;
+    margin-bottom: 1.5em;
+  }
+h4 {
+    margin-bottom: 0;
+  }
+.button {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 0.2em 0.35em;
+    margin: 5px 5px 5px 0;
+    display: inline-block;
+  }
+input, select {
+    font-size: 100%;
+    color: #484848;
+  }
+a:link, a:visited {
+    color: #484848;
+    text-decoration: none;
+  }
+a:hover, a:active, a:focus {
+    color: #484848;
+    text-decoration: underline;
+  }
+input.button:hover, input.button:active, input.button:focus {
+  text-decoration: underline;
+}
+h1 a:link, h1 a:visited, h1 a:hover, h1 a:active, h1 a:focus {
+  color: #f60;
+}
+hr {
+  padding: 5px, 0, 5px, 0;
+  }
+footer, footer a, footer.button {
+  color: #ff6600 !important; /* yeah I know I'm rusty */
+  font-size: small;
+}
+.flashmessage {
+  padding: 15px 20px;
+  background-color: #f60; /* Red */
+  color: white;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.closebtn:hover {
+  color: #484848;
+}
