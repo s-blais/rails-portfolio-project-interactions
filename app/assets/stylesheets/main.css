@@ -4,12 +4,19 @@ body {
     line-height: 1.3em;
   }
 h1 {
-    color: #ff6600;
+    color: #0084ff;
     margin-bottom: 1.5em;
   }
+h1.masthead {
+  margin-bottom: 0;
+}
 h4 {
     margin-bottom: 0;
   }
+h5.masthead {
+  color: #0084ff;
+  margin-top: 0.5em;
+}
 .button {
     border: 1px solid;
     border-radius: 5px;
