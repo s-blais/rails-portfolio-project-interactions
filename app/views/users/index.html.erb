@@ -1,0 +1,5 @@
+<h2>All Providers</h2>
+
+<% @users.each do |u| %>
+  <p><%= link_to u.name, user_path(u) %></p>
+<% end %>
