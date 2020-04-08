@@ -1,5 +1,12 @@
 <h2>Welcome to Interactions</h2>
 
-<!-- maybe some session logic here -->
+<% if session[:user_id] %>
 
-<p><%= link_to 'Log In', login_path, class: 'button' %></p>
+  <h3>Hi, <%= @user.display_name %>! You are logged in.</h3>
+  <p><%= link_to 'Log Out', logout_path, class: 'button' %></p>
+
+<% else %>
+
+  <p><%= link_to 'Log In', login_path, class: 'button' %></p>
+
+<% end %>
