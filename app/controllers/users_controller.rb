@@ -26,7 +26,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by_id(params[:id])
+    if params[:id].to_i == current_user.id
+      @user = @current_user #User.find_by_id(params[:id])
+    else
+      redirect_back(fallback_location: user_path(params[:id]))
+    end
   end
 
   def update
