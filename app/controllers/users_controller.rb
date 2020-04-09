@@ -7,13 +7,15 @@ class UsersController < ApplicationController
   end
   
   def new
+    redirect_back(fallback_location: root_path) if logged_in?
     @user = User.new
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to user_path(@user)
+      session[:user_id] = @user.id
+      redirect_to root_path
     else
       render :new
     end
