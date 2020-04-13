@@ -10,6 +10,10 @@ Rails.application.routes.draw do
 
   get '/logout' => 'sessions#destroy' # this will be converted to a proper post route with a form
 
-  resources :users #new, create, show, edit, update, delete, index
+  resources :users do
+    resources :patients, only: [:index, :new, :edit, :update]
+  end
+
+  resources :patients, only: [:index, :show]
 
 end
