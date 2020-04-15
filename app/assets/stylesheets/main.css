@@ -37,14 +37,25 @@ a:hover, a:active, a:focus {
     text-decoration: underline;
   }
 input.button:hover, input.button:active, input.button:focus {
-  text-decoration: underline;
-}
-h1 a:link, h1 a:visited, h1 a:hover, h1 a:active, h1 a:focus {
-  color: #f60;
-}
-hr {
-  padding: 5px, 0, 5px, 0;
+    text-decoration: underline;
   }
+h1 a:link, h1 a:visited, h1 a:hover, h1 a:active, h1 a:focus {
+    color: #f60;
+  }
+a.edit_link {
+    font-size: 0.75em;
+    font-weight: normal;
+    font-style: italic;
+  }
+hr {
+    padding: 5px, 0, 5px, 0;
+  }
+th {
+  text-align: left;
+}
+td {
+  padding-right: 2em;
+}
 footer, footer a, footer.button {
   color: #ff6600 !important; /* yeah I know I'm rusty */
   font-size: small;
