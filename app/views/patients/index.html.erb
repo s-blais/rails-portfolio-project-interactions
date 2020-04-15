@@ -1,10 +1,11 @@
-<h3>All System Patients</h3>
+<h3>All <%= @user ? @user.display_name : 'System' %> Patients</h3>
 
 <table>
   <tr>
     <th>Name</th>
     <th>Age</th>
     <th>Provider</th>
+    <th></th>
   </tr>
 
   <% @patients.each do |p| %>
@@ -12,6 +13,7 @@
       <td><%= p.display_name %></td>
       <td><%= p.age %></td>
       <td><%= p.user.display_name %></td>
+      <td><%= (link_to 'edit patient', edit_user_patient_path(p.user_id, p.id)) if p.user == current_user %></td>
     </tr>
   <% end %>
 </table>

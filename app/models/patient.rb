@@ -1,6 +1,8 @@
 class Patient < ApplicationRecord
   belongs_to :user
 
+  scope :provider_scope, -> (id){where("user_id = ?", id)}
+
   def age
     now = Time.now.utc.to_date
     dob = self.birthdate

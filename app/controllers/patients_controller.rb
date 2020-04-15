@@ -3,7 +3,12 @@ class PatientsController < ApplicationController
   before_action :require_login
 
   def index
-    @patients = Patient.all
+    if params[:user_id] # && user_id validator
+      @user = User.find_by_id(params[:user_id])
+      @patients = Patient.provider_scope(params[:user_id])
+    else
+      @patients = Patient.all
+    end
   end
 
   def new
