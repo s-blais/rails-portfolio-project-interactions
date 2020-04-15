@@ -1,7 +1,5 @@
-<h3>Patient Information</h3>
+<h3>Patient Information <%= (link_to 'edit', edit_user_patient_path(@patient.user, @patient), class: "edit_link") if @patient.user == current_user %></h3>
 
-<p>Name: <%= @patient.display_name %><br>
-Age: <%= @patient.age %></p>
-
-
-<p>Provider: <%= @patient.user.display_name %></p>
+<p>Name: <%= @patient.display_name %> <br>
+Age: <%= @patient.age %><br>
+Provider: <%= @patient.user.display_name %></p>
