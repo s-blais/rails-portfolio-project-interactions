@@ -7,4 +7,8 @@ class Patient < ApplicationRecord
     now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
 
+  def display_name
+    self.first_name + ' ' + self.last_name
+  end
+
 end
