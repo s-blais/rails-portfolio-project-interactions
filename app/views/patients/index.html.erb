@@ -1,17 +1,21 @@
 <h3>All <%= @user ? @user.display_name : 'System' %> Patients</h3>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Age</th>
-    <th>Provider</th>
-  </tr>
-
-  <% @patients.each do |p| %>
+<% unless @patients.empty? %>
+  <table>
     <tr>
-      <td><%= link_to p.display_name, patient_path(p) %></td>
-      <td><%= p.age %></td>
-      <td><%= p.user.display_name %></td>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Provider</th>
     </tr>
-  <% end %>
-</table>
+
+    <% @patients.each do |p| %>
+      <tr>
+        <td><%= link_to p.display_name, patient_path(p) %></td>
+        <td><%= p.age %></td>
+        <td><%= p.user.display_name %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<%= link_to 'Add Patient', new_user_patient_path(current_user), class: 'button' %>
