@@ -16,3 +16,9 @@
 
   <%= f.submit "update patient" %>
 <% end %>
+<br>
+<%= button_to 'delete patient',
+  @patient,
+  method: "delete",
+  data: {confirm: "Are you sure you want to delete #{@patient.display_name}? \nThis action cannot be undone."}
+%>

@@ -12,7 +12,7 @@ class PatientsController < ApplicationController
   end
 
   def new
-    # add user_id validator
+    # add user_id exist & self validator
     @patient = Patient.new(user_id: params[:user_id])
   end
 
@@ -25,13 +25,26 @@ class PatientsController < ApplicationController
   def show
     @patient = Patient.find_by_id(params[:id])
   end
-
+  
   def edit
-
+    # add user_id validator ?
+    # allow Provider to switch ownership to another Provider?
+    @patient = Patient.find_by_id(params[:id])
+    redirect_to patient_path(@patient) if !my_patient?(@patient)
   end
-
+  
   def update
-
+    @patient = Patient.find_by_id(params[:id])
+    @patient.update(patient_params) if my_patient?(@patient)
+    redirect_to patient_path(@patient)
+  end
+  
+  def destroy
+    @patient = Patient.find_by_id(params[:id])
+    redirect_to patient_path(@patient) if !my_patient?(@patient)
+    @patient.destroy
+    # what will happen to entries for this patient in join tables?
+    redirect_to user_patients_path(current_user)
   end
 
   private
