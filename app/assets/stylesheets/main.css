@@ -1,8 +1,16 @@
+html, body {
+  height: 100%;
+}
 body {
     font-family: Helvetica, sans-serif;
     color: #484848;
     line-height: 1.3em;
+    display: flex;
+    flex-direction: column;
   }
+.content {
+  flex: 1 0 auto;
+}
 h1 {
     color: #0084ff;
     margin-bottom: 1.5em;
@@ -33,14 +41,14 @@ a:link, a:visited {
     text-decoration: none;
   }
 a:hover, a:active, a:focus {
-    color: #484848;
-    text-decoration: underline;
+    color: #0084ff;
+    /* text-decoration: underline; */
   }
 input.button:hover, input.button:active, input.button:focus {
     text-decoration: underline;
   }
 h1 a:link, h1 a:visited, h1 a:hover, h1 a:active, h1 a:focus {
-    color: #f60;
+    color: #0084ff;
   }
 a.edit_link {
     font-size: 0.75em;
@@ -56,8 +64,11 @@ th {
 td {
   padding-right: 2em;
 }
+footer {
+  flex-shrink: 0;
+}
 footer, footer a, footer.button {
-  color: #ff6600 !important; /* yeah I know I'm rusty */
+  color: #0084ff !important; /* yeah I know I'm rusty */
   font-size: small;
 }
 .flashmessage {
