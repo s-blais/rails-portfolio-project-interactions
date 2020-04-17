@@ -1,0 +1,18 @@
+<h2>Edit patient</h2>
+
+<%= form_for @patient do |f| %>
+
+  <%# <%= f.hidden_field :user_id %>
+  <!-- not needed for now as Patient's provider not changeable -->
+
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %><br>
+
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %><br>
+  
+  <%= f.label :birthdate %>
+  <%= f.text_field :birthdate %><br>
+
+  <%= f.submit "update patient" %>
+<% end %>
