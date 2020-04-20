@@ -3,7 +3,11 @@ class User < ApplicationRecord
   has_many :patients
 
   def display_name
-    self.name + ', ' + self.post_nominals
+    if self.post_nominals
+      self.name + ', ' + self.post_nominals
+    else
+      self.name
+    end
   end
 
 
