@@ -1,12 +1,14 @@
 <h2>Edit provider</h2>
 
 <%= form_for @user do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username %><br>
-  <%= f.label :password %>
-  <%= f.password_field :password %><br>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %><br>
+  <% if @user.username.present? %>
+    <%= f.label :username %>
+    <%= f.text_field :username %><br>
+    <%= f.label :password %>
+    <%= f.password_field :password %><br>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %><br>
+  <% end %>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
   <%= f.label :post_nominals %>
