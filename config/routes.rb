@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get '/logout' => 'sessions#destroy' # this will be converted to a proper post route with a form
 
+  get '/auth/google_oauth2/callback' => 'sessions#create'
+
   resources :users do
     resources :patients, only: [:index, :new, :edit, :update]
   end

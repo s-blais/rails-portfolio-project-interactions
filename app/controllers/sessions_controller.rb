@@ -5,16 +5,29 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(username: params[:user][:username])
-    return head(:forbidden) unless @user.authenticate(params[:user][:password])
+    if auth
+      @user = User.find_or_create_by(omniauth_uid: auth['uid']) do |u|
+        u.name = auth['info']['name']
+        u.omniauth_provider = auth['provider']
+        u.password = u.password_confirmation = SecureRandom.urlsafe_base64(n=6)
+      end
+    else
+      @user = User.find_by(username: params[:user][:username])
+      return head(:forbidden) unless @user.authenticate(params[:user][:password])
+    end
     session[:user_id] = @user.id
-    # render 'welcome/home'
     redirect_to root_path
   end
 
   def destroy
     session.delete :user_id
     redirect_to root_path
+  end
+
+  private
+
+  def auth
+    request.env['omniauth.auth']
   end
 
 end
