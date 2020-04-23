@@ -18,4 +18,6 @@ Rails.application.routes.draw do
 
   resources :patients, only: [:index, :show, :create, :update, :destroy]
 
+  resources :medications, only: [:show, :new, :create]
+
 end

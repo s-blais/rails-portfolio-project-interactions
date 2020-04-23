@@ -1,0 +1,9 @@
+<h2>Add New Medication</h2>
+
+<%= form_for @medication do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+  <%= f.label :trade_names, 'Trade name(s)'%>
+  <%= f.text_field :trade_names %><br>
+  <%= f.submit "Add Medication"%>
+<% end %>
