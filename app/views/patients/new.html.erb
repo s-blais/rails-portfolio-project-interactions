@@ -9,9 +9,9 @@
 
   <%= f.label :last_name %>
   <%= f.text_field :last_name %><br>
-  
+
   <%= f.label :birthdate %>
-  <%= f.text_field :birthdate %><br>
+  <%= f.text_field :birthdate, placeholder: "YYYY-MM-DD" %><br>
 
   <%= f.submit "create patient" %>
 <% end %>
