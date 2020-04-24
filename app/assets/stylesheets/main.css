@@ -24,6 +24,8 @@ h4 {
 h5.masthead {
   color: #0084ff;
   margin-top: 0.5em;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #0084ffaf;
 }
 .button {
     border: 1px solid;
@@ -55,8 +57,12 @@ a.edit_link {
     font-weight: normal;
     font-style: italic;
   }
+form {
+  line-height: 2em;
+}
 hr {
     padding: 5px, 0, 5px, 0;
+    color: #0084ff;
   }
 th {
   text-align: left;
