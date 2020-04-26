@@ -3,3 +3,23 @@
 <p>Name: <%= @patient.display_name %> <br>
 Age: <%= @patient.age %><br>
 Provider: <%= @patient.user.display_name %></p>
+
+<% unless @patient.prescriptions.empty? %>
+  <table>
+    <tr>
+      <th>Medication</th>
+      <th>Dose</th>
+      <th>Frequency</th>
+    </tr>
+
+    <% @patient.prescriptions.each do |p| %>
+      <tr>
+        <td><%= p.medication.name.capitalize %></td>
+        <td><%= p.dose %></td>
+        <td><%= p.frequency %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<%# <%= link_to 'Add Patient', new_user_patient_path(current_user), class: 'button' %>
