@@ -1,5 +1,7 @@
 class Patient < ApplicationRecord
   belongs_to :user
+  has_many :prescriptions
+  has_many :medications, through: :prescriptions
 
   scope :provider_scope, -> (id){where("user_id = ?", id)}
 
