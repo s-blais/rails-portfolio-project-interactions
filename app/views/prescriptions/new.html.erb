@@ -1,0 +1,17 @@
+<h2>Create new prescription for <%= @patient.display_name %></h2>
+
+<%= form_for @prescription do |f| %>
+
+  <%= f.hidden_field :patient_id %>
+
+  <%= f.label :medication_id %>
+  <%= f.collection_select(:medication_id, Medication.all_alpha, :id, :name) %><br>
+
+  <%= f.label :dose %>
+  <%= f.text_field :dose %><br>
+
+  <%= f.label :frequency %>
+  <%= f.text_field :frequency %><br>
+
+  <%= f.submit "create prescription" %>
+<% end %>
