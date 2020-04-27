@@ -8,6 +8,8 @@ class Prescription < ApplicationRecord
 
   # upgrading to Ruby 2.7 for #tally might save some grief here!
 
+  # pass in an argument for provider scoping, default is "all"?
+
   def self.all_unique_by_medication
     self.all_alpha.uniq{ |p| p.medication_id }
     .map { |p| p.medication }
