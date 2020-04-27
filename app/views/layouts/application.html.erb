@@ -16,7 +16,8 @@
         <h5 class="masthead">tracking your patients and their prescriptions</h5>
         <nav>
           <% if logged_in? %>
-            <%= link_to 'All Patients', patients_path, class: 'button' %>
+            <%= link_to 'Providers', users_path, class: 'button' %>
+            <%= link_to 'Patients', patients_path, class: 'button' %>
             <%= link_to 'My Patients', user_patients_path(current_user), class: 'button' %>
           <% end %>
         </nav>
