@@ -12,7 +12,7 @@
       <tr>
         <td><%= link_to p.display_name, patient_path(p) %></td>
         <td><%= p.age %></td>
-        <td><%= p.user.display_name %></td>
+        <td><%= link_to p.user.display_name, user_path(p.user) %></td>
       </tr>
     <% end %>
   </table>
