@@ -1,0 +1,17 @@
+<h3>All Medications</h3>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Trade Names</th>
+    </tr>
+
+    <% @medications.each do |m| %>
+      <tr>
+        <td><%= link_to m.name.capitalize, medication_path(m) %></td>
+        <td><%= m.trade_names %></td>
+      </tr>
+    <% end %>
+  </table>
+
+<%= link_to 'add medication', new_medication_path, class: 'edit_link' %>

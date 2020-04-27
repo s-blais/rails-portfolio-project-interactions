@@ -2,12 +2,10 @@ class PrescriptionsController < ApplicationController
 
   before_action :require_login
 
-  # index is not needed because list of prescriptions and related links (new, edit) are included in patient show view
-  # def index
-  #   if params[:patient_id]
-  #     @patient = Patient.find_by_id(params[:patient_id])
-  #   end
-  # end
+  def index
+    @medications = Prescription.all_unique_by_medication
+    @prescriptions_count = Prescription.all_tally_by_medication
+  end
 
   # def new (nested only)
   def new

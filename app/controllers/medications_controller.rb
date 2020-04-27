@@ -2,6 +2,10 @@ class MedicationsController < ApplicationController
 
   before_action :require_login
 
+  def index
+    @medications = Medication.all
+  end
+
   def new
     @medication = Medication.new
   end

@@ -1,0 +1,19 @@
+<h3>All Prescriptions</h3>
+
+  <table>
+    <tr>
+      <th>Medication</th>
+      <th>Trade Names</th>
+      <th>Prescriptions</th>
+    </tr>
+
+    <% @medications.each do |m| %>
+      <tr>
+        <td><%= link_to m.name.capitalize, medication_path(m) %></td>
+        <td><%= m.trade_names %></td>
+        <td><%= @prescriptions_count[m.id] %></td>
+      </tr>
+    <% end %>
+  </table>
+
+<%#= link_to 'add patient', new_user_patient_path(current_user), class: 'edit_link' %>
