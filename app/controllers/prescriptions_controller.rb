@@ -1,5 +1,7 @@
 class PrescriptionsController < ApplicationController
 
+  before_action :require_login
+
   # index is not needed because list of prescriptions and related links (new, edit) are included in patient show view
   # def index
   #   if params[:patient_id]

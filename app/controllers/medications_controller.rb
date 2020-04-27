@@ -1,5 +1,7 @@
 class MedicationsController < ApplicationController
 
+  before_action :require_login
+
   def new
     @medication = Medication.new
   end
