@@ -23,9 +23,16 @@ class PrescriptionsController < ApplicationController
 
   # there's no show because it's provided in patients#show
 
-  # def edit (nested only?)
+  def edit
+    @prescription = Prescription.find_by_id(params[:id])
+    redirect_to patient_path(params[:patient_id]) unless my_patient?(@prescription.patient)
+  end
 
-  # def update (nested only?)
+  def update
+    @prescription = Prescription.find_by_id(params[:id])
+    @prescription.update(prescription_params) if my_patient?(@prescription.patient)
+    redirect_to patient_path(@prescription.patient)
+  end
 
   # def delete (nested only?)
 

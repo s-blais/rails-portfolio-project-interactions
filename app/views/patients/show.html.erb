@@ -3,6 +3,8 @@
 <p>Name: <%= @patient.display_name %> <br>
 Age: <%= @patient.age %><br>
 Provider: <%= @patient.user.display_name %></p>
+<br>
+<h3>Patient Prescriptions</h3>
 
 <% unless @patient.prescriptions.empty? %>
   <table>
@@ -10,6 +12,7 @@ Provider: <%= @patient.user.display_name %></p>
       <th>Medication</th>
       <th>Dose</th>
       <th>Frequency</th>
+      <th></th>
     </tr>
 
     <% @patient.prescriptions.each do |p| %>
@@ -17,9 +20,11 @@ Provider: <%= @patient.user.display_name %></p>
         <td><%= p.medication.name.capitalize %></td>
         <td><%= p.dose %></td>
         <td><%= p.frequency %></td>
+        <td><%= (link_to 'edit', edit_patient_prescription_path(@patient, p), class: "edit_link") if my_patient?(@patient) %>
+        </td>
       </tr>
     <% end %>
   </table>
 <% end %>
 
-<%# <%= link_to 'Add Patient', new_user_patient_path(current_user), class: 'button' %>
+<%= (link_to 'add new prescription', new_patient_prescription_path(@patient), class: "edit_link") if @patient.user == current_user %>

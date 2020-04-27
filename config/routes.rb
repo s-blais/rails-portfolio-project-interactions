@@ -17,11 +17,11 @@ Rails.application.routes.draw do
   end
 
   resources :patients, only: [:index, :show, :create, :update, :destroy] do
-    resources :prescriptions, only: [:index, :new]
+    resources :prescriptions, only: [:index, :new, :edit]
   end
 
   resources :medications, only: [:show, :new, :create]
 
-  resources :prescriptions, only: [:create]
+  resources :prescriptions, only: [:create, :update, :destroy]
 
 end
