@@ -11,15 +11,23 @@
 
   <body>
     <div class="content">
-      <h1 class="masthead"><%= link_to 'Interactions', root_path %></h1>
-      <h5 class="masthead">tracking your patients and their medications</h5>
+      <header>
+        <h1 class="masthead"><%= link_to 'Interactions', root_path %></h1>
+        <h5 class="masthead">tracking your patients and their prescriptions</h5>
+        <nav>
+          <% if logged_in? %>
+            <%= link_to 'All Patients', patients_path, class: 'button' %>
+            <%= link_to 'My Patients', user_patients_path(current_user), class: 'button' %>
+          <% end %>
+        </nav>
+      </header>
       <%= yield %>
     </div>
     <footer>
       <% if logged_in? %>
         <p>
-        <%= link_to 'All Patients', patients_path, class: 'button' %>
-        <%= link_to 'My Patients', user_patients_path(current_user), class: 'button' %>
+        <%#= link_to 'All Patients', patients_path, class: 'button' %>
+        <%#= link_to 'My Patients', user_patients_path(current_user), class: 'button' %>
         <%= link_to 'My Profile', user_path(current_user), class: 'button' %>
         <%= link_to 'Log Out', logout_path, class: 'button' %>
         </p>

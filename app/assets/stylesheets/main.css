@@ -11,6 +11,12 @@ body {
 .content {
   flex: 1 0 auto;
 }
+header {
+  border-bottom: 2px solid #0084ffaf;
+}
+nav {
+  font-size: smaller;
+}
 h1 {
     color: #0084ff;
     margin-bottom: 1.5em;
@@ -24,6 +30,7 @@ h4 {
 h5.masthead {
   color: #0084ff;
   margin-top: 0.5em;
+  margin-bottom: 0px;
   padding-bottom: 5px;
   border-bottom: 2px solid #0084ffaf;
 }
