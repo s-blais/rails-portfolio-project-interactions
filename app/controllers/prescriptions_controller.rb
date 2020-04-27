@@ -34,7 +34,11 @@ class PrescriptionsController < ApplicationController
     redirect_to patient_path(@prescription.patient)
   end
 
-  # def delete (nested only?)
+  def destroy
+    @prescription = Prescription.find_by_id(params[:id])
+    @prescription.destroy if my_patient?(@prescription.patient)
+    redirect_to patient_path(@prescription.patient)
+  end
 
   private
 
