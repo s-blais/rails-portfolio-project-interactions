@@ -3,7 +3,7 @@ class MedicationsController < ApplicationController
   before_action :require_login
 
   def index
-    @medications = Medication.all
+    @medications = Medication.all_alpha
   end
 
   def new
@@ -12,8 +12,11 @@ class MedicationsController < ApplicationController
 
   def create
     @medication = Medication.new(medication_params)
-    @medication.save
-    redirect_to medication_path(@medication)
+    if @medication.save
+      redirect_to medication_path(@medication)
+    else
+      render :new
+    end
   end
 
   def show
