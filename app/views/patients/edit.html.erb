@@ -1,5 +1,20 @@
 <h2>Edit patient</h2>
 
+<% if @patient.errors.any? %>
+  <div id="error_explanation">
+    <p>
+      <%= pluralize(@patient.errors.count, "error") %>
+      prohibited this patient from being saved:
+    </p>
+
+    <ul>
+    <% @patient.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @patient do |f| %>
 
   <%# <%= f.hidden_field :user_id %>
