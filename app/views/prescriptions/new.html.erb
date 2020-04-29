@@ -20,7 +20,7 @@
   <%= f.hidden_field :patient_id %>
 
   <%= f.label :medication_id %>
-  <%= f.collection_select(:medication_id, Medication.all_alpha, :id, :name) %><br>
+  <%= f.collection_select(:medication_id, Medication.all_alpha, :id, :name, {}, {style: "text-transform: capitalize;"}) %><br>
 
   <%= f.label :dose %>
   <%= f.text_field :dose %><br>
