@@ -85,6 +85,13 @@ footer, footer a, footer.button {
   color: #0084ff !important; /* yeah I know I'm rusty */
   font-size: small;
 }
+#error_explanation {
+  color: #B01011;
+}
+.field_with_errors {
+  display: inline;
+  color: #B01011;
+}
 .flashmessage {
   padding: 15px 20px;
   background-color: #f60; /* Red */

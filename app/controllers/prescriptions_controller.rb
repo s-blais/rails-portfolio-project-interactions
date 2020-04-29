@@ -15,8 +15,13 @@ class PrescriptionsController < ApplicationController
 
   def create
     @prescription = Prescription.new(prescription_params)
-    @prescription.save
-    redirect_to patient_path(@prescription.patient_id)
+    if @prescription.save
+      redirect_to patient_path(@prescription.patient_id)
+    else
+      @patient = Patient.find_by_id(@prescription.patient_id)
+      # wow that took some figuring out but it works – to prevent @patient from being nil upon rendering :new with errors! (would keeping all prescription routes nested have prevented this?)
+      render :new
+    end
   end
 
   # there's no show because it's provided in patients#show
