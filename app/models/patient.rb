@@ -1,7 +1,18 @@
 class Patient < ApplicationRecord
   belongs_to :user
-  has_many :prescriptions
+  has_many :prescriptions, dependent: :destroy
   has_many :medications, through: :prescriptions
+
+  validates :first_name, :last_name, presence: true
+  validates :birthdate, format: {
+    with: /\d{4}-\d{2}-\d{2}/,
+    message: "must be in format YYYY-MM-DD"
+  }
+
+  validates :first_name, uniqueness: {
+    scope: [:last_name, :birthdate],
+    message: ", last name, and birthdate combination must not already exist in patient database"
+  }
 
   scope :provider_scope, -> (id){where("user_id = ?", id)}
 
