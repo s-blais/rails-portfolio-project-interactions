@@ -33,8 +33,15 @@ class PrescriptionsController < ApplicationController
 
   def update
     @prescription = Prescription.find_by_id(params[:id])
-    @prescription.update(prescription_params) if my_patient?(@prescription.patient)
-    redirect_to patient_path(@prescription.patient)
+    if my_patient?(@prescription.patient)
+      if @prescription.update(prescription_params)
+        redirect_to patient_path(@prescription.patient)
+      else
+        render :edit
+      end
+    else
+      redirect_to patient_path(@prescription.patient)
+    end
   end
 
   def destroy
