@@ -12,9 +12,13 @@ For simplicity's sake, Patients belong to one Provider, while Providers can have
 
 All views beyond login and account creation are protected behind active session verification.
 
-Providers create their Patients. Information about a Patient, including Prescriptions, can be changed only by the Patient's Provider. 
+Providers create their own Patients exclusively. Information about a Patient, including Prescriptions, can be changed only by the Patient's Provider. Patients are validated for all attribute presence, DOB format, and uniqueness of first/last/DOB combination. If a Patient is destroyed, associated Prescriptions are destroyed as well.
 
 Medications are a simple table model; Prescriptions are a join model between Patients and Medications that include further attributes of dose and frequency.
+
+Medication creation is not obviously "user-facing" as the Medication table is more of a dictionary, theoretically maintained managerially. Medication generic names are downcased (as per industry standard) and validated for uniqueness before saving. Generic names are recapitalized for presentation as appropriate. Medication creation is validated for uniqueness by name.
+
+A Patient cannot be prescribed the same drug more than once concurrently; Prescriptions are validated for uniqueness by medication as scoped by patient.
 
 Providers creating accounts via Google authentication, which obviously does not include post-nominals (e.g., D.M.D.), or may have a different or incomplete version of their name, can add their post-nominals or edit their name via edit_user path.
 
