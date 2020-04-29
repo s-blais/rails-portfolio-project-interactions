@@ -18,8 +18,11 @@ class PatientsController < ApplicationController
 
   def create
     @patient = Patient.new(patient_params)
-    @patient.save
-    redirect_to patient_path(@patient)
+    if @patient.save
+      redirect_to patient_path(@patient)
+    else
+      render :new
+    end
   end
 
   def show
@@ -35,15 +38,22 @@ class PatientsController < ApplicationController
   
   def update
     @patient = Patient.find_by_id(params[:id])
-    @patient.update(patient_params) if my_patient?(@patient)
-    redirect_to patient_path(@patient)
+    if my_patient?(@patient)
+      if @patient.update(patient_params)
+        redirect_to patient_path(@patient)
+      else
+        render :edit
+      end
+    else
+      redirect_to patient_path(@patient)
+    end
   end
-  
+      
   def destroy
     @patient = Patient.find_by_id(params[:id])
     redirect_to patient_path(@patient) if !my_patient?(@patient)
     @patient.destroy
-    # what will happen to entries for this patient in join tables?
+    # added dependent: :destroy to Patient's has_many :prescriptions so a patient's prescriptions will be destroyed when the patient is destroyed
     redirect_to user_patients_path(current_user)
   end
 
