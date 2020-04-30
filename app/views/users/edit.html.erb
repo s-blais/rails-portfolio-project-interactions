@@ -1,13 +1,28 @@
 <h2>Edit provider</h2>
 
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <p>
+      <%= pluralize(@user.errors.count, "error") %>
+      prohibited this provider from being saved:
+    </p>
+
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @user do |f| %>
   <% if @user.username.present? %>
     <%= f.label :username %>
     <%= f.text_field :username %><br>
     <%= f.label :password %>
-    <%= f.password_field :password %><br>
+    <%= f.password_field :password, placeholder: "blank if no change" %><br>
     <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %><br>
+    <%= f.password_field :password_confirmation, placeholder: "blank if no change" %><br>
   <% end %>
   <%= f.label :name %>
   <%= f.text_field :name %><br>

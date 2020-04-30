@@ -1,5 +1,20 @@
 <h2>Create new provider</h2>
 
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <p>
+      <%= pluralize(@user.errors.count, "error") %>
+      prohibited this provider from being saved:
+    </p>
+
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @user do |f| %>
   <%= f.label :username %>
   <%= f.text_field :username %><br>
