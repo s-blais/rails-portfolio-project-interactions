@@ -1,3 +1,5 @@
+<h2>Log in with Username & Password</h2>
+
 <%= form_tag ({ method: 'post', controller: 'sessions', action: 'create' }) do %>
   Username: 
   <%= text_field_tag :'user[username]' %>
@@ -5,4 +7,10 @@
   <%= password_field_tag :'user[password]' %>
 
   <%= submit_tag 'log in' %>
+<% end %>
+
+<% flash.each do |type, msg| %>
+  <div class="flash">
+    <%= msg %>
+  </div>
 <% end %>

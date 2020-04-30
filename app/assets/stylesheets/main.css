@@ -92,6 +92,10 @@ footer, footer a, footer.button {
   display: inline;
   color: #B01011;
 }
+.flash {
+  color: #B01011;
+  font-style: italic;
+}
 .flashmessage {
   padding: 15px 20px;
   background-color: #f60; /* Red */

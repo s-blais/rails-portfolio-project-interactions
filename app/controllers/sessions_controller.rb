@@ -13,7 +13,11 @@ class SessionsController < ApplicationController
       end
     else
       @user = User.find_by(username: params[:user][:username])
-      return head(:forbidden) unless @user.authenticate(params[:user][:password])
+      unless @user.authenticate(params[:user][:password])
+        flash.alert = "Incorrect username and/or password"
+        redirect_to login_path
+        return
+      end
     end
     session[:user_id] = @user.id
     redirect_to root_path
