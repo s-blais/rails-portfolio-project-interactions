@@ -26,4 +26,33 @@ class Patient < ApplicationRecord
     self.first_name + ' ' + self.last_name
   end
 
+  # lists Patient's currently prescribed medication ids in order
+  def patient_prescriptions_medication_ids
+    self.prescriptions.collect {|p| p.medication_id}.sort
+  end
+
+  # creates array of all pairings of currently prescribed medication ids to be compared against Interaction pairings
+  def patient_prescription_pairs
+    seconds = patient_prescriptions_medication_ids
+    patient_prescriptions_medication_ids.collect do |first|
+      seconds.shift
+      seconds.collect { |second| [first,second] }
+    end
+    .flatten(1)
+  end
+
 end
+
+  # removed "variable sandwich" for "pairs" and shorthanded the nested loop
+
+  # def patient_prescription_pairs
+  #   pairs = []
+  #   seconds = patient_prescriptions_medication_ids
+  #   patient_prescriptions_medication_ids.each do |first|
+  #     seconds.shift
+  #     seconds.each do |second|
+  #       pairs.push([first,second])
+  #     end
+  #   end
+  #   pairs
+  # end
