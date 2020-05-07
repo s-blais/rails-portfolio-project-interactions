@@ -27,32 +27,39 @@ class Patient < ApplicationRecord
   end
 
   # lists Patient's currently prescribed medication ids in order
-  def patient_prescriptions_medication_ids
+  def prescriptions_medication_ids
     self.prescriptions.collect {|p| p.medication_id}.sort
   end
 
   # creates array of all pairings of currently prescribed medication ids to be compared against Interaction pairings
-  def patient_prescription_pairs
-    seconds = patient_prescriptions_medication_ids
-    patient_prescriptions_medication_ids.collect do |first|
+  def prescription_pairs
+    seconds = prescriptions_medication_ids
+    prescriptions_medication_ids.collect do |first|
       seconds.shift
       seconds.collect { |second| [first,second] }
     end
     .flatten(1)
   end
 
+  # returns array of Interactions where the pair of medications in the Interaction match a pair in the patient's prescription pairings
+  def interaction_matches
+    Interaction.all.select do |i|
+      self.prescription_pairs.include?([i.medication_1_id, i.medication_2_id])
+    end
+  end
+
 end
 
-  # removed "variable sandwich" for "pairs" and shorthanded the nested loop
+# removed "variable sandwich" for "pairs" and shorthanded the nested loop
 
-  # def patient_prescription_pairs
-  #   pairs = []
-  #   seconds = patient_prescriptions_medication_ids
-  #   patient_prescriptions_medication_ids.each do |first|
-  #     seconds.shift
-  #     seconds.each do |second|
-  #       pairs.push([first,second])
-  #     end
-  #   end
-  #   pairs
-  # end
+# def patient_prescription_pairs
+#   pairs = []
+#   seconds = patient_prescriptions_medication_ids
+#   patient_prescriptions_medication_ids.each do |first|
+#     seconds.shift
+#     seconds.each do |second|
+#       pairs.push([first,second])
+#     end
+#   end
+#   pairs
+# end
