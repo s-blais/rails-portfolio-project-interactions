@@ -3,7 +3,6 @@
 <p>Name: <%= @patient.display_name %> <br>
 Age: <%= @patient.age %><br>
 Provider: <%= @patient.user.display_name %></p>
-<br>
 <h3>Patient Prescriptions</h3>
 
 <% unless @patient.prescriptions.empty? %>
@@ -28,3 +27,13 @@ Provider: <%= @patient.user.display_name %></p>
 <% end %>
 
 <%= (link_to 'add new prescription', new_patient_prescription_path(@patient), class: "edit_link") if @patient.user == current_user %>
+
+<% unless @interactions.empty? %>
+  <h3 class="interactions">Potential Interactions</h3>
+  <ul>
+    <% @interactions.each do |i| %>
+      <li><%= i.medication_1.name.capitalize %> and <%= i.medication_2.name %>: <%= i.description %></li>
+    <% end %>
+  </ul>
+<% end %>
+
