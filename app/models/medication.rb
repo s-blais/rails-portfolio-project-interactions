@@ -1,6 +1,8 @@
 class Medication < ApplicationRecord
   has_many :prescriptions
   has_many :patients, through: :prescriptions
+  has_many :interactions, foreign_key: :medication_1_id, class_name: "Interaction"
+  has_many :interactions, foreign_key: :medication_2_id, class_name: "Interaction"
 
   validates_presence_of :name
   validates :name, uniqueness: true
