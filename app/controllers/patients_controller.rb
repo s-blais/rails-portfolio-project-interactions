@@ -1,6 +1,7 @@
 class PatientsController < ApplicationController
 
   before_action :require_login
+  before_action :set_patient, only: [:show, :edit, :update, :destroy]
 
   def index
     if params[:user_id] # && user_id validator
@@ -26,19 +27,16 @@ class PatientsController < ApplicationController
   end
 
   def show
-    @patient = Patient.find_by_id(params[:id])
     @interactions = @patient.interaction_matches
   end
   
   def edit
     # add user_id validator ?
     # allow Provider to switch ownership to another Provider?
-    @patient = Patient.find_by_id(params[:id])
     redirect_to patient_path(@patient) if !my_patient?(@patient)
   end
   
   def update
-    @patient = Patient.find_by_id(params[:id])
     if my_patient?(@patient)
       if @patient.update(patient_params)
         redirect_to patient_path(@patient)
@@ -51,7 +49,6 @@ class PatientsController < ApplicationController
   end
       
   def destroy
-    @patient = Patient.find_by_id(params[:id])
     redirect_to patient_path(@patient) if !my_patient?(@patient)
     @patient.destroy
     # added dependent: :destroy to Patient's has_many :prescriptions so a patient's prescriptions will be destroyed when the patient is destroyed
@@ -62,6 +59,10 @@ class PatientsController < ApplicationController
 
   def patient_params
     params.require(:patient).permit(:user_id, :first_name, :last_name, :birthdate)
+  end
+
+  def set_patient
+    @patient = Patient.find_by_id(params[:id])
   end
 
 end
