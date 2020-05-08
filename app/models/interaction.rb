@@ -5,7 +5,6 @@ class Interaction < ApplicationRecord
   # possible validations:
   # - the medication pairing does not already exist
   # - the two medications are not the same medication
-  # - sort the two numbers before validating and saving
   # - all three columns must be present
 
   # note when seeding this table, it seems to want the medication *objects*, and not just the id of the medication (an integer); otherwise get AssociationMismatch: Medication expected.. got Integer

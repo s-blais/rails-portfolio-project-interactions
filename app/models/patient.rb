@@ -28,7 +28,7 @@ class Patient < ApplicationRecord
 
   # lists Patient's currently prescribed medication ids in order
   def prescriptions_medication_ids
-    self.prescriptions.collect {|p| p.medication_id}.sort
+    self.prescriptions.collect {|p| p.medication_id}
   end
 
   # creates array of all pairings of currently prescribed medication ids to be compared against Interaction pairings
@@ -44,7 +44,7 @@ class Patient < ApplicationRecord
   # returns array of Interactions where the pair of medications in the Interaction match a pair in the patient's prescription pairings
   def interaction_matches
     Interaction.all.select do |i|
-      self.prescription_pairs.include?([i.medication_1_id, i.medication_2_id])
+      self.prescription_pairs.include?([i.medication_1_id, i.medication_2_id]) || self.prescription_pairs.include?([i.medication_2_id, i.medication_1_id])
     end
   end
 
