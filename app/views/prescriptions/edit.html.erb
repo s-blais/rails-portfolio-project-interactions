@@ -1,19 +1,6 @@
 <h2>Edit prescription for <%= @prescription.patient.display_name %></h2>
 
-<% if @prescription.errors.any? %>
-  <div id="error_explanation">
-    <p>
-      <%= pluralize(@prescription.errors.count, "error") %>
-      prohibited this prescription from being saved:
-    </p>
-
-    <ul>
-    <% @prescription.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render partial: 'shared/form_errors', locals: { model: @prescription } %>
 
 <%= form_for @prescription do |f| %>
 

@@ -1,19 +1,6 @@
 <h2>Add new patient for <%= current_user.display_name %></h2>
 
-<% if @patient.errors.any? %>
-  <div id="error_explanation">
-    <p>
-      <%= pluralize(@patient.errors.count, "error") %>
-      prohibited this patient from being saved:
-    </p>
-
-    <ul>
-    <% @patient.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render partial: 'shared/form_errors', locals: { model: @patient } %>
 
 <%= form_for @patient do |f| %>
 
