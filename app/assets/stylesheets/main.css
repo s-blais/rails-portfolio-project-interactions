@@ -92,6 +92,9 @@ footer, footer a, footer.button {
   display: inline;
   color: #B01011;
 }
+.interactions {
+  color: #B01011;
+}
 .flash {
   color: #B01011;
   font-style: italic;
