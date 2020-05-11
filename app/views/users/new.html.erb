@@ -2,6 +2,8 @@
 
 <%= render partial: 'shared/form_errors', locals: { model: @user } %>
 
+<!-- Note: did not move new/edit forms to partials, because the edit includes an important conditional on the username/password fields, as they are n/a for OmniAuth users. -->
+
 <%= form_for @user do |f| %>
   <%= f.label :username %>
   <%= f.text_field :username %><br>
