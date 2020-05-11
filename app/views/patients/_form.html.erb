@@ -1,0 +1,15 @@
+<%= form_for @patient do |f| %>
+
+  <%= f.hidden_field :user_id %>
+
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %><br>
+
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %><br>
+  
+  <%= f.label :birthdate %>
+  <%= f.text_field :birthdate, placeholder: "YYYY-MM-DD" %><br>
+
+  <%= f.submit %>
+<% end %>
