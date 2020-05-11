@@ -2,7 +2,7 @@ class Interaction < ApplicationRecord
   belongs_to :medication_1, class_name: "Medication"
   belongs_to :medication_2, class_name: "Medication"
 
-  # possible validations:
+  # possible validations if managed front-end:
   # - the medication pairing does not already exist
   # - the two medications are not the same medication
   # - all three columns must be present
