@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
   def edit
     if params[:id].to_i == current_user.id
-      @user = @current_user #User.find_by_id(params[:id])
+      @user = @current_user
     else
       redirect_back(fallback_location: user_path(params[:id]))
     end
