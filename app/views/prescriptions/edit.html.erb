@@ -2,20 +2,10 @@
 
 <%= render partial: 'shared/form_errors', locals: { model: @prescription } %>
 
-<%= form_for @prescription do |f| %>
+<%= render partial: 'form' %>
 
-  <%= f.label :medication_id %>
-  <%= f.collection_select(:medication_id, Medication.all_alpha, :id, :name, {}, {style: "text-transform: capitalize;"}) %><br>
-
-  <%= f.label :dose %>
-  <%= f.text_field :dose %><br>
-
-  <%= f.label :frequency %>
-  <%= f.text_field :frequency %><br>
-
-  <%= f.submit "update prescription" %>
-<% end %>
 <br>
+
 <%= button_to 'delete prescription',
   @prescription,
   method: "delete",
