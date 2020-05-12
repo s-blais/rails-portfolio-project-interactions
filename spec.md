@@ -1,26 +1,29 @@
 # Specifications for the Rails Assessment
 
-*- note that Devise has been dropped from the curriculum, and is also not mentioned on the lesson webpage, thus, ignoring the Devise mentions below -*
-
 Specs:
 - [x] Using Ruby on Rails for the project
-- [x] Include at least one has_many relationship (x has_many y; e.g. User has_many Recipes) 
-- [x] Include at least one belongs_to relationship (x belongs_to y; e.g. Post belongs_to User)
-- [x] Include at least two has_many through relationships (x has_many y through z; e.g. Recipe has_many Items through Ingredients)
-- [x] Include at least one many-to-many relationship (x has_many y through z, y has_many x through z; e.g. Recipe has_many Items through Ingredients, Item has_many Recipes through Ingredients)
-- [x] The "through" part of the has_many through includes at least one user submittable attribute, that is to say, some attribute other than its foreign keys that can be submitted by the app's user (attribute_name e.g. ingredients.quantity)
-- [x] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
-- [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
-- [x] Include signup ~~(how e.g. Devise)~~
-- [x] Include login ~~(how e.g. Devise)~~
-- [x] Include logout ~~(how e.g. Devise)~~
-- [x] Include third party signup/login (how e.g. ~~Devise~~/OmniAuth)
-- [x] Include nested resource show or index (URL e.g. users/2/recipes)
-- [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients/new)
-- [x] Include form display of validation errors (form URL e.g. /recipes/new)
+- [x] Include at least one has_many relationship: *User has_many Patients, Patient has_many Prescriptions, Medication has_many Patients, Medication has_many Interactions*
+- [x] Include at least one belongs_to relationship:  *Patient belongs_to User, Prescription belongs_to Patient, Prescription belongs_to Medication, Interaction belongs_to Medication*
+- [x] Include at least two has_many through relationships:  *Patient has_many Medications, through Prescriptions, Medication has_many Patients, through Prescriptions*
+- [x] Include at least one many-to-many relationship:  *Patient has_many Medications, through Prescriptions, Medication has_many Patients, through Prescriptions*
+- [x] The "through" part of the has_many through includes at least one user submittable attribute, that is to say, some attribute other than its foreign keys that can be submitted by the app's user: *Prescription.dose and Prescription.frequency*
+- [x] Include reasonable validations for simple model objects:
+  - *User: username: uniqueness, format*
+  - *Patient: first_name, last_name: presence; birthdate: format; all three together: uniqueness*
+  - *Prescription: medication_id, patient_id, dose, frequency: presence; medication_id: uniqueness (scope: patient_id)*
+- [x] Include a class level ActiveRecord scope method: *Patient.provider_scope URL: users/:id/patients*
+- [x] Include signup
+- [x] Include login
+- [x] Include logout
+- [x] Include third party signup/login: *OmniAuth/Google*
+- [x] Include nested resource show or index: *users/:id/index, patients/:id/prescriptions*
+- [x] Include nested resource "new" form: *users/:id/patients/new, patients/:id:/prescriptions/new*
+- [x] Include form display of validation errors: *validation errors display for new/edit on user, patient, and prescription forms*
 
 Confirm:
 - [x] The application is pretty DRY
 - [x] Limited logic in controllers
 - [x] Views use helper methods if appropriate
 - [x] Views use partials if appropriate
+
+*controllers utilize private before_action helper methods, application_helper.rb methods, and class methods; all form error handling moved to a shared partial; redundant Patient and Prescription new/edit forms moved to partial*
