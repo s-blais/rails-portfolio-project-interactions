@@ -38,14 +38,15 @@ class Patient < ApplicationRecord
 
   # returns array of Interactions where the pair of medications in the Interaction match a pair in the patient's prescription_pairs
   def interaction_matches
+    pairs = self.prescription_pairs
     Interaction.all.select do |i|
-      self.prescription_pairs.include?([i.medication_1_id, i.medication_2_id]) || self.prescription_pairs.include?([i.medication_2_id, i.medication_1_id])
+      pairs.include?([i.medication_1_id, i.medication_2_id]) || pairs.include?([i.medication_2_id, i.medication_1_id])
     end
   end
 
 end
 
-# removed "variable sandwich" for "pairs" and shorthanded the nested loop
+# removed "variable sandwich" for "pairs" and shorthanded the nested loop, old version below. Was also able to skip the patient_prescriptions_medication_ids method entirely, since it's simply self.medications.ids
 
 # def patient_prescription_pairs
 #   pairs = []
