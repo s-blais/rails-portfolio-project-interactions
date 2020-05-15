@@ -6,25 +6,27 @@ Age: <%= @patient.age %><br>
 Provider: <%= @patient.user.display_name %></p>
 <h3>Patient Prescriptions</h3>
 
-<% unless @patient.prescriptions.empty? %>
-  <table>
-    <tr>
-      <th>Medication</th>
-      <th>Dose</th>
-      <th>Frequency</th>
-      <th></th>
-    </tr>
-
-    <% @patient.prescriptions.each do |p| %>
+<% if @patient.prescriptions.empty? %>
+  <p>No prescriptions to display for this patient</p>
+  <% else %>
+    <table>
       <tr>
-        <td><%= p.medication.name.capitalize %></td>
-        <td><%= p.dose %></td>
-        <td><%= p.frequency %></td>
-        <td><%= (link_to 'edit', edit_patient_prescription_path(@patient, p), class: "edit_link") if my_patient?(@patient) %>
-        </td>
+        <th>Medication</th>
+        <th>Dose</th>
+        <th>Frequency</th>
+        <th></th>
       </tr>
-    <% end %>
-  </table>
+
+      <% @patient.prescriptions.each do |p| %>
+        <tr>
+          <td><%= p.medication.name.capitalize %></td>
+          <td><%= p.dose %></td>
+          <td><%= p.frequency %></td>
+          <td><%= (link_to 'edit', edit_patient_prescription_path(@patient, p), class: "edit_link") if my_patient?(@patient) %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
 <% end %>
 
 <%= (link_to 'add new prescription', new_patient_prescription_path(@patient), class: "edit_link") if @patient.user == current_user %>
