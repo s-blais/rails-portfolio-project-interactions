@@ -10,17 +10,24 @@ class PrescriptionsController < ApplicationController
 
   def new
     @patient = Patient.find_by_id(params[:patient_id])
-    @prescription = Prescription.new(patient_id: params[:patient_id])
+    if my_patient?(@patient)
+      @prescription = Prescription.new(patient_id: params[:patient_id])
+    else
+      redirect_to patient_path(@patient)
+    end
   end
 
   def create
     @prescription = Prescription.new(prescription_params)
-    if @prescription.save
-      redirect_to patient_path(@prescription.patient_id)
+    @patient = Patient.find_by_id(@prescription.patient_id) # this is utilized for both the my_patient check and also so @patient is not nil if :new is re-rendered because of form save error
+    if my_patient?(@patient)
+      if @prescription.save
+        redirect_to patient_path(@patient)
+      else
+        render :new
+      end
     else
-      @patient = Patient.find_by_id(@prescription.patient_id)
-      # wow that took some figuring out but it works – to prevent @patient from being nil upon rendering :new with errors! (would keeping all prescription routes nested have prevented this?)
-      render :new
+      redirect_to patient_path(@patient)
     end
   end
 
