@@ -6,6 +6,7 @@
   <table>
     <tr>
       <th>Name</th>
+      <th>DOB</th>
       <th>Age</th>
       <th>Provider</th>
     </tr>
@@ -13,6 +14,7 @@
     <% @patients.each do |p| %>
       <tr>
         <td><%= link_to p.display_name, patient_path(p) %></td>
+        <td><%= p.birthdate %></td>
         <td><%= p.age %></td>
         <td><%= link_to p.user.display_name, user_path(p.user) %></td>
       </tr>
