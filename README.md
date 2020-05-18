@@ -1,8 +1,8 @@
 # README
 
-This app is a rudimentary system concept for healthcare providers to track the medications that their patients are prescribed, and see automatically see information about potential medication interactions if they exist for the medications prescribed to a patient. Proof-of-concept only for coursework requirement purposes, and is not intended to store real-life data, or be even remotely HIPAA-compliant. Not for any "real" data!
+This app is a rudimentary system concept for healthcare providers to track the medications that their patients are prescribed, and automatically see information about potential adverse medication interactions if they exist for the medications prescribed to a patient. Proof-of-concept only for coursework requirement purposes, and is not intended to store real-life data, or be even remotely HIPAA-compliant. Not for any "real" data!
 
-This application was developed with Ruby 2.6.1 and Rail 5.2.4.2.
+This application was developed with Ruby 2.6.1 and Rails 5.2.4.2.
 
 Native user creation with secure password storage via Bcrypt gem.
 
@@ -10,7 +10,7 @@ Third-party authentication with Google via OmniAuth. It's highly doubtable that 
 
 For simplicity's sake, Patients belong to one Provider, while Providers can have many Patients. Leaving many-to-many relationship to the Prescriptions for now.
 
-(See model relationship chart at end of file)
+*(See model relationship chart at end of file)*
 
 All views beyond login and account creation are protected behind active-session verification.
 
